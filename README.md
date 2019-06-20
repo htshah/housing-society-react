@@ -1,4 +1,7 @@
-# housing-society-react
+# housing-society-react 
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/c5f4861c-b291-4a62-8f95-7a1c9b88bd58/deploy-status)](https://app.netlify.com/sites/housing-society/deploys)
+
 This is the front-end for housing-society project. This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
