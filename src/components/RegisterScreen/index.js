@@ -77,7 +77,7 @@ const formSchema = [
   },
   <Grid container justify="center">
     <Grid item>
-      <Link to="/login" color="default">
+      <Link to="/" color="default">
         Already have an account? Login.
       </Link>
     </Grid>
