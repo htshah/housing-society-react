@@ -7,7 +7,7 @@ const StyledSubtitle = styled(Typography)`
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
-  max-width: calc(60vw);
+  width: calc(60vw);
   float: left;
 `;
 const Title = props => <StyledSubtitle variant="body2" {...props} />;
