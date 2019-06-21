@@ -18,7 +18,7 @@ const AuthProvider = props => {
     typeof Cookies.get(userCookieName) !== "undefined"
   );
 
-  const [isAdmin, setAdmin] = useState(!isAuth ? false : isUserAdmin());
+  const [isAdmin] = useState(!isAuth ? false : isUserAdmin());
 
   const login = (email, password) => {
     return new Promise((resolve, reject) => {
