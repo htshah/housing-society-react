@@ -31,7 +31,7 @@ export default function({
         {/* Nav Bar */}
         <Grid item>
           <NavBar
-            showSideNavBtn
+            showSideNavBtn={showSideNavBtn}
             onSideNavBtnClick={() => setSideBarVisible(true)}
             title={title}
           />
