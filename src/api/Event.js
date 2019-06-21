@@ -30,7 +30,7 @@ export default class Event {
   static register(id, data) {
     return new Promise((resolve, reject) => {
       api
-        .post(`/event/${id}`, data)
+        .post(`/event/${id}/register`, data)
         .then(response => resolve(response.data))
         .catch(error => reject(error.response));
     });
