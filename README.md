@@ -4,7 +4,9 @@
 
 This is the front-end for housing-society project. This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+
 ## [Demo](https://housing-society404.netlify.com/)
+**Note:** Optimized only for mobile. May not render correctly on large screens
 
 Admin login details:
 ```
