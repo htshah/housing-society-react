@@ -22,7 +22,7 @@ export default function({ title, showSideNavBtn, onSideNavBtnClick }) {
       )}
       {/* Render title as component if not passed as string */}
       <Grid item>
-        <Typography variant="h2" align="left">
+        <Typography variant="h4" align="left">
           {title}
         </Typography>
       </Grid>

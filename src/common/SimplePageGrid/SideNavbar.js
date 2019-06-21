@@ -8,26 +8,18 @@ import {
   ListItemText,
   Grid,
   Typography,
-  Divider,
+  Divider
 } from "@material-ui/core";
 
-import { StyledLink as Link } from "../common/Link";
-
-import ApiProfile from "../api/Profile";
+import { StyledLink as Link } from "../Link";
 
 export default ({
   isOpened,
   onClose,
   disableSwipeToOpen = false,
-  swipeAreaWidth = 15,
+  swipeAreaWidth = 15
 }) => {
   const [isOpen, setOpen] = useState(isOpened);
-  const [profile, setProfile] = useState({
-    first_name: "User",
-    last_name: "",
-    parkings: 0,
-    vehicles: 0,
-  });
 
   const handleOpen = () => {
     setOpen(true);
@@ -44,18 +36,12 @@ export default ({
     { text: "Vehicles", icon: "directions_car", link: "/vehicles" },
     <Divider light style={{ margin: "5px 0 5px 45px" }} />,
     { text: "Profile", icon: "perm_identity", link: "/profile" },
-    { text: "Logout", icon: "power_settings_new", link: "/logout" },
+    { text: "Logout", icon: "power_settings_new", link: "/logout" }
   ];
 
   useEffect(() => {
     setOpen(isOpened);
   }, [isOpened]);
-
-  useEffect(() => {
-    ApiProfile.get().then(res => {
-      setProfile(res);
-    });
-  }, []);
 
   return (
     <SwipeableDrawer
@@ -71,28 +57,9 @@ export default ({
         role="button"
         style={{
           width: "275px",
-          padding: "15px 0",
+          padding: "15px 0"
         }}
       >
-        <Grid
-          container
-          justify="flex-start"
-          alignItems="center"
-          style={{
-            padding: "15px",
-          }}
-        >
-          <Grid item style={{ paddingLeft: "15px" }}>
-            <Typography variant="h5">
-              {`${profile.first_name} ${profile.last_name}`}
-            </Typography>
-            <Typography variant="caption">
-              {profile.parkings} parkings, {profile.vehicles} vehicles
-            </Typography>
-          </Grid>
-        </Grid>
-        <Divider light />
-
         <List style={{ padding: "15px 0" }}>
           {listItems.map((element, index) => {
             if (React.isValidElement(element)) {
@@ -107,7 +74,7 @@ export default ({
                   style={{
                     width: "calc(100% - 15px)",
                     borderTopRightRadius: "30px",
-                    borderBottomRightRadius: "30px",
+                    borderBottomRightRadius: "30px"
                   }}
                 >
                   <ListItemIcon>
@@ -117,7 +84,7 @@ export default ({
                     primary={text}
                     primaryTypographyProps={{
                       variant: "subtitle2",
-                      color: "textPrimary",
+                      color: "textPrimary"
                     }}
                     style={{ paddingLeft: "0" }}
                   />
