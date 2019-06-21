@@ -3,6 +3,7 @@ import { Grid, Typography, Drawer } from "@material-ui/core";
 import styled from "styled-components";
 
 // Common components
+import { useAuth } from "../../common/Providers/Auth";
 import { PageWrapper } from "../../common/Wrapper";
 import SimplePageGrid from "../../common/SimplePageGrid";
 import SimpleItemCard from "../../common/SimpleItemCard";
@@ -40,6 +41,8 @@ export default function() {
   const [isBottomDrawerVisible, setBottomDrawerVisible] = useState(false);
   const [bottomDrawerContentType, setBottomDrawerContentType] = useState(null);
   const [selectedBill, setSelectedBill] = useState(null);
+
+  const { isAdmin } = useAuth();
 
   useEffect(() => {
     ApiBilling.getUserBills().then(res => setBillingList(res.bill));
@@ -112,15 +115,17 @@ export default function() {
               <SectionTitle>Billing</SectionTitle>
             </Grid>
 
-            <Grid item style={{ cursor: "pointer" }}>
-              <Typography
-                variant="h4"
-                color="textSecondary"
-                onClick={() => setBottomDrawerContentType("form")}
-              >
-                +
-              </Typography>
-            </Grid>
+            {isAdmin && (
+              <Grid item style={{ cursor: "pointer" }}>
+                <Typography
+                  variant="h4"
+                  color="textSecondary"
+                  onClick={() => setBottomDrawerContentType("form")}
+                >
+                  +
+                </Typography>
+              </Grid>
+            )}
           </Grid>
           {!billingList || !billingList.length ? (
             <Grid item>
