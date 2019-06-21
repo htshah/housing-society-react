@@ -5,11 +5,14 @@ import styled from "styled-components";
 // Common components
 import { PageWrapper } from "../../common/Wrapper";
 import SimplePageGrid from "../../common/SimplePageGrid";
+import { useAuth } from "../../common/Providers/Auth";
 
 import SimpleItemCard from "./components/SimpleItemCard";
 
 import { ColorPalette } from "../../common/Theme";
 import ApiNotice from "../../api/Notice.js";
+
+import NoticeAddForm from "./components/Form";
 
 const StyledSectiontitle = styled(Typography)`
   color: ${ColorPalette.text.tertiary};
@@ -20,60 +23,101 @@ const SectionTitle = props => (
   <StyledSectiontitle variant="subtitle2" {...props} />
 );
 
+const renderNotice = ({ id, title, description }, onClick = () => {}) => (
+  <SimpleItemCard
+    key={id}
+    title={title}
+    subtitle={description}
+    onClick={onClick}
+  />
+);
+const renderSelectedNotice = ({ title, description }) => (
+  <div style={{ padding: "30px 15px" }}>
+    <Typography variant="h4" style={{ marginBottom: "20px" }}>
+      {title}
+    </Typography>
+    <Typography variant="h6" color="textSecondary">
+      {description}
+    </Typography>
+  </div>
+);
+
+const renderAddNoticeForm = () => <div>Notice Form</div>;
+
 export default function() {
   const [noticeList, setNoticeList] = useState([]);
   const [isBottomDrawerVisible, setBottomDrawerVisible] = useState(false);
+  const [bottomDrawerContentType, setBottomDrawerContentType] = useState(null);
   const [selectedNotice, setSelectedNotice] = useState(null);
+
+  const { isAdmin } = useAuth();
 
   useEffect(() => {
     ApiNotice.getAll().then(res => setNoticeList(res.notice));
   }, []);
 
   useEffect(() => {
-    if (selectedNotice !== null) setBottomDrawerVisible(true);
+    if (selectedNotice !== null) {
+      setBottomDrawerVisible(true);
+      setBottomDrawerContentType("notice");
+    }
   }, [selectedNotice]);
 
-  const renderNotice = ({ id, title, description }, onClick = () => {}) => (
-    <SimpleItemCard
-      key={id}
-      title={title}
-      subtitle={description}
-      onClick={onClick}
-    />
-  );
+  useEffect(() => {
+    if (bottomDrawerContentType !== null) setBottomDrawerVisible(true);
+  }, [bottomDrawerContentType]);
+
   return (
     <React.Fragment>
       {/* Notice detailed card */}
-      {selectedNotice && (
-        <Drawer
-          anchor="bottom"
-          open={isBottomDrawerVisible}
-          onClose={() => {
-            setBottomDrawerVisible(false);
-          }}
-        >
-          <div style={{ padding: "30px 15px" }}>
-            <Typography variant="h4" style={{ marginBottom: "20px" }}>
-              {selectedNotice.title}
-            </Typography>
-            <Typography variant="h6" color="textSecondary">
-              {selectedNotice.description}
-            </Typography>
-          </div>
-        </Drawer>
-      )}
+      <Drawer
+        anchor="bottom"
+        open={isBottomDrawerVisible}
+        onClose={() => {
+          setBottomDrawerVisible(false);
+          setBottomDrawerContentType(null);
+          setSelectedNotice(null);
+        }}
+      >
+        {bottomDrawerContentType === "notice" &&
+          selectedNotice &&
+          renderSelectedNotice(selectedNotice)}
+        {bottomDrawerContentType === "form" && (
+          <NoticeAddForm
+            onSuccessfulSubmit={notice => {
+              setNoticeList([notice, ...noticeList]);
+              setBottomDrawerVisible(false);
+              setBottomDrawerContentType(null);
+            }}
+          />
+        )}
+      </Drawer>
       <PageWrapper>
         <SimplePageGrid showSideNavBtn title="Home" justify="flex-start">
           <Grid
             item
+            container
             style={{
-              position: "sticky",
-              background: "#fff",
               paddingBottom: "0",
               paddingTop: "0"
             }}
+            justify="space-between"
           >
-            <SectionTitle>notices</SectionTitle>
+            <Grid item>
+              <SectionTitle>notices</SectionTitle>
+            </Grid>
+
+            {isAdmin && (
+              <Grid item style={{ cursor: "pointer" }}>
+                <Typography
+                  variant="h4"
+                  color="textSecondary"
+                  onClick={() => setBottomDrawerContentType("form")}
+                >
+                  +
+                </Typography>
+              </Grid>
+            )}
           </Grid>
           {!noticeList.length ? (
             <Grid item>
