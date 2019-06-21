@@ -10,7 +10,7 @@ This is the front-end for housing-society project. This project was bootstrapped
 
 Admin login details:
 ```
-  email: admin@example.com
+  email: demo@example.com
   password: helloworld
 ```
 
