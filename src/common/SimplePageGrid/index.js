@@ -1,13 +1,14 @@
 import React from "react";
-import { Grid, Typography } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
+import NavBar from "./NavBar";
 
 export default function({
-  title,
   justify,
   direction,
   alignItems,
   gridSpacing,
   children,
+  ...navBarProps
 }) {
   return (
     <Grid
@@ -18,16 +19,10 @@ export default function({
       spacing={gridSpacing || 32}
       style={{ minHeight: "inherit" }}
     >
-      {/* Render title as component if not passed as string */}
-      {typeof title === "string" ? (
-        <Grid item>
-          <Typography variant="h2" align="left">
-            {title}
-          </Typography>
-        </Grid>
-      ) : (
-        title
-      )}
+      {/* Nav Bar */}
+      <Grid item>
+        <NavBar {...navBarProps} />
+      </Grid>
 
       {children}
     </Grid>

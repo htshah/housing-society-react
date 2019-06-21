@@ -43,8 +43,8 @@ const formSchema = [
   },
   <Grid container justify="space-between">
     <Grid item>
-      <Link to="/" color="default">
-        Try another way
+      <Link to="/register" color="default">
+        Register
       </Link>
     </Grid>
     <Grid item>
@@ -64,7 +64,7 @@ export default ({ history }) => {
             <SimplePageGrid title="Login">
               {/* Banner Image */}
               <Grid item>
-                <BannerImage src={bannerImg} />
+                <BannerImage width="60%" src={bannerImg} />
               </Grid>
 
               {/* Login Form */}
@@ -90,7 +90,12 @@ export default ({ history }) => {
                         formikBag.setSubmitting(false);
                       } else {
                         formikBag.setStatus("Logged in");
-                        setTimeout(() => setAuth(true), 1500);
+                        setTimeout(() => {
+                          setAuth(true);
+                          history.push({
+                            pathname: "/home"
+                          });
+                        }, 1500);
                       }
                     });
                   }}
