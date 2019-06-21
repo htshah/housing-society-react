@@ -41,16 +41,7 @@ const AuthProvider = props => {
   };
 
   const logout = () => {
-    return new Promise((resolve, reject) => {
-      ApiAuth.logout()
-        .then(res => {
-          setAuth(false);
-          resolve(true);
-        })
-        .catch(error => {
-          reject(false);
-        });
-    });
+    Cookies.remove(userCookieName);
   };
 
   return (
