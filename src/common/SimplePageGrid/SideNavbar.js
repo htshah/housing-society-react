@@ -6,8 +6,6 @@ import {
   ListItemIcon,
   Icon,
   ListItemText,
-  Grid,
-  Typography,
   Divider
 } from "@material-ui/core";
 
@@ -30,10 +28,9 @@ export default ({
   };
 
   const listItems = [
-    { text: "Home", icon: "search", link: "/home" },
-    { text: "Bookings", icon: "date_range", link: "/bookings" },
-    { text: "Parkings", icon: "local_parking", link: "/parking" },
-    { text: "Vehicles", icon: "directions_car", link: "/vehicles" },
+    { text: "Home", icon: "home", link: "/home" },
+    { text: "Events", icon: "date_range", link: "/events" },
+    { text: "Billing", icon: "monetization_on", link: "/billing" },
     <Divider light style={{ margin: "5px 0 5px 45px" }} />,
     { text: "Profile", icon: "perm_identity", link: "/profile" },
     { text: "Logout", icon: "power_settings_new", link: "/logout" }
