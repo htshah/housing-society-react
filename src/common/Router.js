@@ -12,7 +12,7 @@ import GuestRoute from "./GuestRoute";
 const Router = () => (
   <BrowserRouter>
     <Switch>
-      <GuestRoute exact path="/login" component={LoginScreen} />
+      <GuestRoute exact path="/" component={LoginScreen} />
       <GuestRoute exact path="/register" component={RegisterScreen} />
 
       <PrivateRoute exact path="/home" component={HomeScreen} />
