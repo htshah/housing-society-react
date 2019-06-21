@@ -1,6 +1,7 @@
 import React from "react";
 import { Grid } from "@material-ui/core";
 import { string } from "yup";
+import { Cookies } from "react-cookie";
 
 // Common Components
 import { PageWrapper } from "../../common/Wrapper";
@@ -14,7 +15,7 @@ import bannerImg from "../../images/logo.png";
 
 //Providers
 import { AuthConsumer } from "../../common/Providers/Auth";
-
+const cookies = new Cookies();
 const formSchema = [
   {
     type: "email",
@@ -90,6 +91,11 @@ export default ({ history }) => {
                         formikBag.setSubmitting(false);
                       } else {
                         formikBag.setStatus("Logged in");
+                        const expDate = new Date();
+                        expDate.setDate(expDate.getDate() + 7);
+                        cookies.set("token", res["data"]["token"], {
+                          expires: expDate
+                        });
                         setTimeout(() => {
                           setAuth(true);
                           history.push({
