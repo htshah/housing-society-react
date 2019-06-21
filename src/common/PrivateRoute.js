@@ -8,9 +8,7 @@ export default props => (
       return isAuth === true ? (
         <Route {...props} />
       ) : (
-        <Redirect
-          to={{ pathname: "/login", state: { from: props.location } }}
-        />
+        <Redirect to={{ pathname: "/", state: { from: props.location } }} />
       );
     }}
   </AuthConsumer>
