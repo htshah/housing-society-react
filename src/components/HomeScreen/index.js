@@ -7,7 +7,7 @@ import { PageWrapper } from "../../common/Wrapper";
 import SimplePageGrid from "../../common/SimplePageGrid";
 import { useAuth } from "../../common/Providers/Auth";
 
-import SimpleItemCard from "./components/SimpleItemCard";
+import SimpleItemCard from "./../common/SimpleItemCard";
 
 import { ColorPalette } from "../../common/Theme";
 import ApiNotice from "../../api/Notice.js";
