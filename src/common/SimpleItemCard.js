@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { Paper, Grid, Typography } from "@material-ui/core";
-import { ColorPalette } from "../../../common/Theme";
+import { ColorPalette } from "./Theme";
 
 const StyledSubtitle = styled(Typography)`
   overflow: hidden;
