@@ -42,8 +42,6 @@ const renderSelectedNotice = ({ title, description }) => (
   </div>
 );
 
-const renderAddNoticeForm = () => <div>Notice Form</div>;
-
 export default function() {
   const [noticeList, setNoticeList] = useState([]);
   const [isBottomDrawerVisible, setBottomDrawerVisible] = useState(false);
