@@ -1,4 +1,7 @@
 import axios from "axios";
+import { Cookies } from "react-cookie";
+
+const cookies = new Cookies();
 
 const api = () => {
   const defaultOptions = {
@@ -6,7 +9,13 @@ const api = () => {
       process.env.REACT_APP_DEPLOY_ENV === "local"
         ? `http://localhost:8001/api`
         : `https://housing-society404.herokuapp.com/api`,
-    method: "get"
+    method: "get",
+    crossDomain: true,
+    headers: {
+      common: {
+        Authorization: `Bearer ${cookies.get("token") || ""}`
+      }
+    }
   };
 
   return axios.create(defaultOptions);

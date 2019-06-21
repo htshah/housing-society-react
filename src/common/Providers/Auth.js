@@ -26,7 +26,7 @@ const AuthProvider = props => {
   const register = data => {
     return new Promise((resolve, reject) => {
       ApiAuth.register(data)
-        .then(response => resolve(response))
+        .then(res => resolve(res.data))
         .catch(err => reject(err));
     });
   };
