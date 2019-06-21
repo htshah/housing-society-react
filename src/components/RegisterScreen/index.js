@@ -7,7 +7,7 @@ import SimplePageGrid from "../../common/SimplePageGrid";
 import FormikJsonForm from "../../common/FormikJsonForm";
 import { AuthConsumer } from "../../common/Providers/Auth";
 import { StyledLink as Link } from "../../common/Link";
-import { string } from "yup";
+import { string, number } from "yup";
 
 const formSchema = [
   {
@@ -48,6 +48,15 @@ const formSchema = [
     value: "",
     validate: string()
       .matches(/^[0-9]{10}$/)
+      .required()
+  },
+  {
+    type: "number",
+    name: "flat_id",
+    label: "Flat no",
+    value: "",
+    validate: number()
+      .min(100)
       .required()
   },
   {
@@ -100,7 +109,7 @@ export default ({ history }) => {
         formikBag.setStatus("Registered successfully");
         setTimeout(() => {
           history.push({
-            pathname: "/login"
+            pathname: "/"
           });
         }, 1500);
       }
