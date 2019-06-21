@@ -97,10 +97,7 @@ export default ({ history }) => {
                           expires: expDate
                         });
                         setTimeout(() => {
-                          setAuth(true);
-                          history.push({
-                            pathname: "/home"
-                          });
+                          window.location.reload();
                         }, 1500);
                       }
                     });
